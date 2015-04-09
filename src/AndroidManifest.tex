@@ -1,0 +1,47 @@
+%----
+\subsection{AndroidManifest.xml}
+
+В файле \textit{AndroidManifest.xml} описываются все компоненты Android приложения.
+ 
+\lstset{
+    language=xml,
+    caption=Пример объявления компонента Activity,
+    label=code:activity_xml,
+    keywordstyle=\color{blue}\bf,
+    commentstyle=\color{OliveGreen},
+    stringstyle=\color{red},
+    basicstyle=\scriptsize    
+}
+
+\lstinputlisting{files/activity.xml}
+\begin{ESKDexplanation}
+\item[где ] \textit{activity name} --- имя класса который реализует Activity в java;
+\item \textit{activity lable} --- заголовок Activity;
+\item \textit{activity windowSoftInputMode} --- указано что должна быть скрыта программная клавиатура;
+\item \textit{activity launchMode} --- задано значение \textit{singleTask};
+\item \textit{intent-filter action name} --- показывает что это главная Activity приложения, та с которой начнется запуск приложения;
+\item \textit{intent-filter category name} --- показывает что Activity будет присутствовать в Laucnher-е Android, т.е. в списке всех приложений. 
+\end{ESKDexplanation}
+
+\subsubsection{Параметр configChanges}
+	В этом параметре можно указать при каких изменениях мы не хотим чтобы Android пересоздавал Activity. Вместо этого будет вызван метод \textit{onConfigurationChanged()}, в котором мы обработаем смену конфигурации самостоятельно.
+	 
+	 
+В пример ниже, при повороте экрана просто показывается его текущее состояние.
+	\begin{center}
+	android:configChanges=``orientation|ScreenSize''
+	\end{center}
+	
+	\lstset{
+	    language=java,
+	    caption=Пример обработчика изменения конфигурации,
+	    label=code:onConfigurationChanged_java,
+	    keywordstyle=\color{blue}\bf,
+	    commentstyle=\color{OliveGreen},
+	    stringstyle=\color{red},
+	    basicstyle=\scriptsize   
+	}
+	
+	\lstinputlisting{files/onConfigurationChanged.java}
+	
+\warning{Использование параметра \textit{configChanges} не избавляет от необходимости корректно обрабатывать пересоздание Activity. \newline Оно оправдано только в редких, исключительных случаях!}

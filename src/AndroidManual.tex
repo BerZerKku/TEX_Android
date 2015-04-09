@@ -1,0 +1,52 @@
+%%This is a very basic article template.
+%%There is just one section and two subsections.
+\input{preambule}
+
+% Заполнение граф Титульного листа и основной надписи
+\ESKDcompany{ООО <<Прософт-Системы>>}
+%\ESKDclassCode{} 
+\ESKDtitle{Android Manual}
+\ESKDdocName{Отдел Энергосвязи}
+%\ESKDsignature{Заметки OrCAD 16.6}
+\ESKDgroup{\normalsize ООО <<Прософт-Системы>>}
+
+% основная надпись
+\ESKDauthor{\ESKDfontII Щеблыкин М.В.}
+%\ESKDchecker{\ESKDfontII Макаров Е.Г.}
+%\ESKDnormContr{\ESKDfontII Бунина О.Ю.}
+%\ESKDapprovedBy{\ESKDfontII Чирков А.Г.} 
+\ESKDdate{2014/08/14}
+%\ESKDcolumnI{АВАНТ К400 \\ \vspace{0.5cm} \ESKDfontIII{Инструкция по использованию протокола MODBUS}}
+
+% переназначение в itemize символа первого уровня на жирную точку
+\renewcommand\labelitemi{$\bullet$}
+
+\begin{document}
+
+\tableofcontents
+
+\newpage
+\section{Основные компоненты приложения. Жизненный цикл приложения}
+
+Приложение само не решает когда завершиться, это делает ОС в тот момент, когда ей понадобятся ресурсы.
+
+Приоритеты процессов:
+\begin{itemize} 
+	\item процесс переднего плана (который содержит Activity с которыми взаимодействует пользователь в данный момент или обрабатывается \\ BroadcastReceiver, или процессы содержащие foreground методы);
+	\item видимый процесс (с которыми пользователь в данный момент не взаимодействует, но их UI виден пользователю);
+	\item сервисный процесс (в котором запущен хотя бы один сервис);
+	\item процесс заднего плана (которые содержат Activity не видимые пользователю в данный момент);
+	\item пустой процесс (которые не содержат ни одного компонента, например, данные оставшиеся от убитой Activity).
+\end{itemize}
+
+% subsections
+	\include{Activity}
+	\include{Service}
+	\include{BroadcastReceiver} 
+	\include{ContentProvider}
+	\include{Intent}
+	\include{Application}
+	\include{Task}
+	\include{AndroidManifest}
+	
+\end{document}

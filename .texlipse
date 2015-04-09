@@ -1,5 +1,5 @@
 #TeXlipse project settings
-#Wed Apr 08 10:59:54 YEKT 2015
+#Thu Apr 09 10:19:13 YEKT 2015
 markTmpDer=true
 builderNum=2
 outputDir=doc/
@@ -7,7 +7,7 @@ makeIndSty=
 bibrefDir=
 outputFormat=pdf
 tempDir=tmp
-mainTexFile=Android Manual.tex
+mainTexFile=AndroidManual.tex
 outputFile=Android Manual.pdf
 langSpell=ru
 markDer=true

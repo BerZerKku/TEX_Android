@@ -1,0 +1,16 @@
+%----
+\subsection{BroadcastReceiver}
+\textbf{BroadcastReceiver} --- приемник широковещательных сообщений.
+
+\begin{itemize}
+	\item получает сообщения от Android или других приложений;
+	\item Примеры широковещательных сообщений:
+	\begin{itemize}
+		\item BOOT
+		\item SCREEN\_OFF/ON
+		\item CONNECTIVITY\_ACTION
+	\end{itemize}
+	\item должен обрабатывать сообщения быстро, длительные задачи можно делегировать сервису.
+\end{itemize}
+
+При слишком долгом выполнении, например, порядка 10 секунд, Android может убить этот процесс.

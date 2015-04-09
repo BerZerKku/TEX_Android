@@ -81,6 +81,15 @@
 \end{flushleft}	
 }
 
+%%% Информация
+\newcommand{\warning}[1]{ %
+\begin{flushleft}%
+	\begin{tabular*}{\linewidth}{m{0.05\linewidth}m{0.9\linewidth}}%
+		\includegraphics[width=\linewidth]{warning.jpg} & \textcolor{Red}{\textit{#1}}
+	\end{tabular*}	
+\end{flushleft}	
+}
+
 %%% Переопределение отображения счетчиков enumerate на отображение цифрами
 \renewcommand{\theenumi}{\arabic{enumi}}
 \renewcommand{\labelenumi}{\theenumi)}
