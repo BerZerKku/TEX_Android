@@ -1,6 +1,6 @@
 %----
 \subsection{Intent}
-\textbf{Intent} --- сущность для описания операции, которую требуется выполнить.
+\textbf{Intent} --- намерение (англ.), сущность для описания операции, которую требуется выполнить.
 
 Используется для:
 \begin{itemize}
@@ -9,3 +9,97 @@
 	\item отправки широковещательных сообщений;
 	\item выполнения стандартных, преопределенных операций.
 \end{itemize}
+
+Отправляя Intent приложение сообщает системе, другим приложениям или другим частям своего приложения, о своем намерение что-либо сделать. Например запустить приложение камере, чтобы пользователь сделал снимок. Открыть файл для просмотра.
+
+Intent бывают явные (explicit) и неявные (implicit). В явных указывается конкретный получатель, как если бы мы обращались к конкретному человеку. В неявных указывается только действие которое нужно произвести и возможно какие-то параметры.
+
+Обязательным атрибутом Intent является action (ACTION\_VIEW, \newline ACTION\_EDIT и т.д.) действие, которое следует произвести. Так же можно укзать:
+\begin{itemize}
+	\item категория - category (CATEGORY\_LAUNCHER,\newline CATEGORY\_BROWSABLE);
+	\item данные - data, над которыми следует произвести действия;
+	\item дополнительные параметры - extras.
+\end{itemize}
+
+Ниже приведено создание Intent для отображения страницы в браузере.
+\lstset{
+	    language=java,
+	    caption=Пример Intent для отображения страницы в браузере,
+	    label=code:intent_example_1_java,
+	    keywordstyle=\color{blue}\bf,
+	    commentstyle=\color{OliveGreen},
+	    stringstyle=\color{red},
+	    basicstyle=\scriptsize   
+	}
+	\lstinputlisting{files/intentExample1.java}
+	
+Для перехода на другую Activity своего приложения всегда исспользуются явные Intent (см. пример кода \ref{code:intent_example_2_java}).
+\lstset{
+	    language=java,
+	    caption=Переход в другое ``окно'' своего приложения,
+	    label=code:intent_example_2_java,
+	    keywordstyle=\color{blue}\bf,
+	    commentstyle=\color{OliveGreen},
+	    stringstyle=\color{red},
+	    basicstyle=\scriptsize   
+	}
+	\lstinputlisting{files/intentExample2.java}
+	
+Часто требуется в Intent передать дополнительные параметры, которые затем целевая Activity сможет получить. Для этого используется метод \textit{putExtra}. Ниже приведен пример кода, для извлечения параметров переданных в примере \ref{code:intent_example_2_java}.
+\lstset{
+	    language=java,
+	    caption=Извлечение доп. параметров переданных в Intent,
+	    label=code:intent_example_3_java,
+	    keywordstyle=\color{blue}\bf,
+	    commentstyle=\color{OliveGreen},
+	    stringstyle=\color{red},
+	    basicstyle=\scriptsize   
+	}
+	\lstinputlisting{files/intentExample3.java}
+	
+При запуске другого приложения можно использовать как явный Intent, так и неявный. В явном Intent указывается конкретное приложение, которое должно обработать запрос. В неявном указывается только действие, которое нужно произвести.
+\lstset{
+	    language=java,
+	    caption=Неявный и явный Intent,
+	    label=code:intent_example_4_java,
+	    keywordstyle=\color{blue}\bf,
+	    commentstyle=\color{OliveGreen},
+	    stringstyle=\color{red},
+	    basicstyle=\scriptsize   
+	}
+	\lstinputlisting{files/intentExample4.java}
+
+Перед запуском Activity с неявным Intent, следует заранее убедиться что этот Intent может быть кем-то обработан в системе. Для этого удобно использовать метод \textit{resolveActivity()}, для создания явного Intent другого приложения удобно использовать метод \textit{getLaunchIntentForPackage()} (см. пример кода \ref{code:intent_example_4_java}).
+
+В определенных ситуациях необходимо предоставить выбор используемого приложения пользователю. Для этого используется метод \textit{createChosser()}. В примере \ref{code:intent_example_5_java} ползователю дается выбор, как он хочет поделиться сообщением.
+\lstset{
+	    language=java,
+	    caption=Пример выбора используемого приложения пользователем,
+	    label=code:intent_example_5_java,
+	    keywordstyle=\color{blue}\bf,
+	    commentstyle=\color{OliveGreen},
+	    stringstyle=\color{red},
+	    basicstyle=\scriptsize   
+	}
+	\lstinputlisting{files/intentExample5.java}
+
+Запуск сервиса практически ничем не отлиается от запуска Activity, разве что используется метод \textit{startService()} (см. пример кода \ref{code:intent_example_6_java})
+\lstset{
+	    language=java,
+	    caption=Пример запуска сервиса,
+	    label=code:intent_example_6_java,
+	    keywordstyle=\color{blue}\bf,
+	    commentstyle=\color{OliveGreen},
+	    stringstyle=\color{red},
+	    basicstyle=\scriptsize   
+	}
+	\lstinputlisting{files/intentExample6.java}
+	
+Так же как и с внутренними Activity для запуска своего сервиса следует использовать только явные Intent. 
+
+
+%----
+\subsubsection{IntentFilter}
+При помощи IntentFilter приложения обозначают в \textit{AndroidManifest.xml} на какие запросы они готовы реагировать.
+
+Фильтры Intent декларируются для Activity, Service, BroadcastReceiver.
